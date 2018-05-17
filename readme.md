@@ -28,6 +28,11 @@ eslint --init
 ```
 gulp
 ```
+<br>
+코드 test
+```
+node es6/test.js
+```
 <br><br>
 
 
