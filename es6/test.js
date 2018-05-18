@@ -49,3 +49,28 @@ console.log(obj[SIZE]);
 console.log(obj["SIZE"]);
 console.log(obj);
 
+// 전위 후위 연산자
+let x = 2;
+console.log(x++ + x++);
+console.log(++x + ++x);
+console.log(x++ + ++x);
+
+let y = 10;
+console.log(y-- + y--); // 10 + 9
+console.log(--y + --y); // 7 + 6
+console.log(y-- + --y); // 6 + 4
+console.log(--y + y--); // 3 + 3
+
+// OR 연산자 패턴
+// const options = suppliesOptions || {name: 'default'}; // suppliesOptions가 있다면 options에 suppliesOptions를 넣는다
+
+// AND 연산자 패턴
+const doIt = false;
+let test = 0;
+const result = doIt && test++;
+
+// , 패턴
+let a = 0, b = 10, c;
+c = (a++, b++); // c = 10
+console.log(`a: ${a}, b: ${b}, c: ${c}`);
+
