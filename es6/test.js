@@ -74,9 +74,15 @@ let a = 0, b = 10, c;
 c = (a++, b++); // c = 10
 console.log(`a: ${a}, b: ${b}, c: ${c}`);
 
-const FLAG_EXECUTE = 1;
-const FLAG_WRITE = 2;
-const FLAG_READ = 4;
+// 해체 할당
+const testObj1 = {
+  test1: 2,
+    test2: 3,
+  test3: 4
+};
 
-let p = FLAG_READ | FLAG_WRITE; //
+const {test1,test2,test3} = testObj1;
 
+console.log(test1);
+console.log(test2);
+console.log(test3);
