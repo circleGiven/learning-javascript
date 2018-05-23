@@ -66,6 +66,7 @@ console.log(arr3.some(o => o.id === 0));
 const cards = [];
 for (let suit of ['H', 'C', 'D', 'S']) {
     for (let value = 1; value <= 13; value++) {
+        // 아래와 동일한 코드
         cards.push({ suit: suit, value: value });
         // cards.push({ suit, value });
     }
@@ -83,12 +84,18 @@ const values = {
     13: 'K'
 };
 
-function cardToString(c) {
+function initCardValues() {
     for (let i = 2; i <= 10; i++) {
         values[i] = i;
     }
+}
+
+function cardToString(c) {
     return values[c.value] + suits[c.suit];
 }
 
+initCardValues();
+// 아래와 동일 한 코드
+// console.log(cards.filter(c => c.value === 2).map(c => cardToString(c)));
 console.log(cards.filter(c => c.value === 2).map(cardToString));
 console.log(cards.filter(c => c.value === 10 && c.suit === 'H').map(cardToString));
