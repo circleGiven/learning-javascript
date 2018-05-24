@@ -148,3 +148,7 @@ console.log(longWords);
 // filter와 join을 이용
 longWords = words.filter(x => x.length > 6).join(" ");
 console.log(longWords);
+
+// 삭제되거나 정의되지 않은 요소들은 콜백  함수를 호출하지 않는다
+const undefinedArray = new Array(5);
+console.log(undefinedArray.map((a) => a));
