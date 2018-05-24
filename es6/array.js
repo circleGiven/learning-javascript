@@ -99,3 +99,52 @@ initCardValues();
 // console.log(cards.filter(c => c.value === 2).map(c => cardToString(c)));
 console.log(cards.filter(c => c.value === 2).map(cardToString));
 console.log(cards.filter(c => c.value === 10 && c.suit === 'H').map(cardToString));
+
+
+// reduce
+const arrReduce = [5,15,134,3,21];
+// a 누적값, x는 현재 요소 값
+console.log(arrReduce.reduce((a, x) => a += x, 0));
+console.log(arrReduce.reduce((a, x) => a += x));
+console.log(arrReduce.reduce((a, x) => {
+    return a += x;
+}));
+console.log(arrReduce.reduce((a, x) => {
+    return a + x;
+}));
+
+const words = ["BeachBall", "Rodeo", "Angel", "Producer", "Milli", "Idol", "Chocolate"];
+const alphabetical = words.reduce((a, x) => {
+    // if (!a[x[0]]) {
+    //     a[x[0]] = [];
+    // }
+    // key : value
+    // 누적된 배열의 a에 현재 요소의 첫번째 값이 없다면 해당 프로퍼티에 새로운 배열을 만든다
+    !a[x[0]] && (a[x[0]] = []);
+    a[x[0]].push(x);
+    return a;
+}, {});
+console.log(alphabetical);
+
+const data = [3.3, 5, 7.2, 12, 4, 6, 10.3];
+const stats = data.reduce((a, x) => {
+    a.N++;
+    // 현재 요소 값에서 앞에서 구한 mean을 뺀 값
+    let delta = x - a.mean;
+    // mean 값에 위 값을 여태껏 계산한 수로 나눔
+    a.mean += delta/a.N;
+
+    a.M2 += delta * (x - a.mean);
+    return a;
+}, { N: 0, mean: 0, M2: 0});
+console.log(stats);
+
+// const longWords = words.reduce((a, w) => w.length > 6 ? a+" "+w : a, "").trim();
+let longWords = words.reduce((a, w) => {
+    // 현재 단어가 6자리보다 크면 반환할 문자열에 이어 붙임
+    return w.length > 6 ? a+" "+w : a;
+}, "").trim(); // trim을 쓰지 않으면 초기에 빈 문자열에 붙이기 때문에 앞에 공백이 생긴다
+console.log(longWords);
+// filter와 join을 이용
+longWords = words.filter(x => x.length > 6).join(" ");
+console.log(longWords);
