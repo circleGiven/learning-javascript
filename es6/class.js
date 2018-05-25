@@ -89,3 +89,20 @@ car2.userGear = 'P';
 // 더이상 _userGear에 접근할 수 없다
 car2._userGear = 'D';
 console.log(car2.userGear);
+
+
+// es5에서의 클래스 구현
+function Car3(make, model) {
+    this.make = make;
+    this.model = model;
+    this._userGears = ['P','N','R','D'];
+    this._userGear = this._userGears[0];
+}
+
+// 결국 class도 함수일 뿐이다
+class Es6Car {
+}
+function Es5Car() {
+}
+console.log(typeof Es6Car);
+console.log(typeof Es5Car);
