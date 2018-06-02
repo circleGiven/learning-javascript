@@ -27,7 +27,8 @@ class Log {
             // method
             next() {
                 // 배열의 아이템이 모두 없다면 done true (이터레이터와 같이 구현)
-                return i >= messages.length ? {value: undefined, done: true} : {value: messages[i++], done: true};
+
+                return i >= messages.length ? {value: undefined, done: true} : {value: messages[i++], done: false};
             }
         }
     }
@@ -40,5 +41,30 @@ log.add("third");
 log.add("forth");
 
 for(let entry of log) {
-    console.log(entry);
+    console.log(entry.message);
+}
+
+
+class FibonacciSequence {
+    [Symbol.iterator]() {
+        let a = 0, b = 1;
+        return {
+            next() {
+                let rVal = { value: b, done: false };
+                b += a;
+                a = rVal.value;
+                return rVal;
+            }
+        };
+    }
+}
+
+const fib = new FibonacciSequence();
+let i = 0;
+for (let n of fib) {
+    console.log(n);
+    // 10회 돌면 종료
+    if(++i > 9) {
+        break;
+    }
 }
