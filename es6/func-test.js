@@ -98,3 +98,32 @@ const somOfCubes = newSummer(x => Math.pow(x,3));
 console.log(sumOfSquares([1,2,3]));
 console.log(somOfCubes([1,2,3]));
 
+
+
+
+// 재귀
+function findNeedle(haystack) {
+    // 더이상 찾을 건초더미가 없다
+    if(haystack.length === 0) {
+        return "no haystack here!";
+    }
+    // 바늘을 찾았다
+    if(haystack.shift() === 'needle') {
+        return "found it!";
+    }
+    // 건초더미를 줄인다
+    return findNeedle(haystack);
+}
+
+console.log(findNeedle(['hay','hay','hay','hay','needle','hay','hay']));
+
+
+// factorial
+function factorial(n) {
+    if (n===1) {
+        return 1;
+    }
+    return n * factorial(n-1);
+}
+
+console.log(factorial(4));
