@@ -54,12 +54,47 @@
 // }
 
 // 클로저를 사용하여 의도대로 돌아감
-var i;
-for(i=5; i>=0; i--) {
-    (function (i) {
-        setTimeout(function() {
-            console.log(i === 0 ? "go!" : i);
-        }, (5-i)*1000);
-    })(i);
+// var i;
+// for(i=5; i>=0; i--) {
+//     (function (i) {
+//         setTimeout(function() {
+//             console.log(i === 0 ? "go!" : i);
+//         }, (5-i)*1000);
+//     })(i);
+// }
+
+
+// 지역변수 let 사용
+// for(let i=5; i>=0; i--) {
+//     setTimeout(function() {
+//        console.log(i === 0 ? "go!" : i);
+//     }, (5-i)*1000);
+// }
+
+
+// sum
+function sum(arr, func) {
+    // 함수가 전달되지 않았다면 새 함수 생성
+    if (typeof func !== 'function') {
+        func = x => x;
+        // func = function(x) {
+        //     return x;
+        // }
+    }
+    return arr.reduce((a,x) => a += func(x), 0);
 }
+//
+//
+// console.log(sum([1,2,3]));
+// console.log(sum([1,2,3], x => x*x));
+
+
+function newSummer(func) {
+    return arr => sum(arr, func);
+}
+
+const sumOfSquares = newSummer(x => x*x);
+const somOfCubes = newSummer(x => Math.pow(x,3));
+console.log(sumOfSquares([1,2,3]));
+console.log(somOfCubes([1,2,3]));
 
