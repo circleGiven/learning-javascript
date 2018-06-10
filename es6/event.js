@@ -66,7 +66,7 @@ function launch() {
     });
 }
 
-const c2 = new Countdown(15)
+const c2 = new Countdown(15, true)
     .on('tick', i => console.log(i + '...'));
 
 // 프로미스 체인
