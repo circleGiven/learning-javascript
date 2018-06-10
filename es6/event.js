@@ -66,15 +66,55 @@ function launch() {
     });
 }
 
-const c2 = new Countdown(15, true)
-    .on('tick', i => console.log(i + '...'));
+// const c2 = new Countdown(15, true)
+//     .on('tick', i => console.log(i + '...'));
 
 // 프로미스 체인
-c2.go()
-    .then(launch)
-    .then(function(msg) {
-        console.log(msg);
-    })
-    .catch(function (err)  {
-        console.error("Houston, we have a problem");
+// c2.go()
+//     .then(launch)
+//     .then(function(msg) {
+//         console.log(msg);
+//     })
+//     .catch(function (err)  {
+//         console.error("Houston, we have a problem");
+//     });
+
+// 결정되지 않는 프로미스 방지
+function launch2() {
+    return new Promise(function (resolve, reject)  {
+        if (Math.random() < 0.1) return;
+        console.log("Lift off!");
+        setTimeout(function() {
+            resolve("In orbit!");
+        }, 2 * 1000);
     });
+}
+
+// 프로미스에 타임아웃을 거는 함수
+function addTimeOut(fn, timeOut) {
+    // timeOut이 없다면 기본값 설정
+    if (timeOut === undefined) {
+        timeOut = 1000;
+    }
+    return function (...args) {
+        return new Promise((resolve, reject) => {
+            const tid = setTimeout(reject, timeOut, new Error("promise timed out"));
+
+            fn(...args)
+                .then((...args) => {
+                    clearTimeout(tid);
+                    resolve(...args);
+                })
+                .catch((...args) => {
+                    clearTimeout(tid);
+                    reject(...args);
+                });
+        });
+    }
+}
+
+const c3 = new Countdown(5).on('tick', i => console.log(i + '...'));
+c3.go()
+    .then(addTimeOut(launch2))
+    .then(msg => console.log(msg))
+    .catch(err => console.error("Houston, we have a problem : " + err.message));
