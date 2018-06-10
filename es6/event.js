@@ -44,13 +44,37 @@ class Countdown extends EventEmitter {
 
 const c = new Countdown(16, true);
 // EventEmitter 의 on 메서드가 이벤트를 주시
-c.on('tick', function (i) {
-    if (i > 0) console.log(i + '...');
-});
-c.go()
-.then(function () {
-    console.log("GO!");
-})
-.catch(function (err) {
-   console.log(err.message);
-});
+// c.on('tick', function (i) {
+//     if (i > 0) console.log(i + '...');
+// });
+// c.go()
+// .then(function () {
+//     console.log("GO!");
+// })
+// .catch(function (err) {
+//    console.log(err.message);
+// });
+
+
+
+function launch() {
+    return new Promise(function (resolve, reject)  {
+        console.log("Lift off!");
+        setTimeout(function() {
+            resolve("In orbit!");
+        }, 2 * 1000);
+    });
+}
+
+const c2 = new Countdown(15)
+    .on('tick', i => console.log(i + '...'));
+
+// 프로미스 체인
+c2.go()
+    .then(launch)
+    .then(function(msg) {
+        console.log(msg);
+    })
+    .catch(function (err)  {
+        console.error("Houston, we have a problem");
+    });
