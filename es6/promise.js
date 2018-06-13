@@ -56,21 +56,36 @@ function grun(g) {
     })();
 }
 
+// 콜백이나 promise를 사용하면 예외처리가 어려움
+// 제너레이터 실행기는 비동기적으로 실행하면서도 동기적인 동작방식을 유지하므로 예외처리가 쉬움
 function* theFutureIsNow() {
-    // 순차적
-    // const dataA = yield nfcall(fs.readFile, 'a.txt');
-    // const dataB = yield nfcall(fs.readFile, 'b.txt');
-    // const dataC = yield nfcall(fs.readFile, 'c.txt');
 
-    // all
-    const data = yield Promise.all([
-        nfcall(fs.readFile, 'a.txt'),
-        nfcall(fs.readFile, 'b.txt'),
-        nfcall(fs.readFile, 'c.txt')
-    ]);
+    let data;
+
+    try {
+        // 순차적
+        // const dataA = yield nfcall(fs.readFile, 'a.txt');
+        // const dataB = yield nfcall(fs.readFile, 'b.txt');
+        // const dataC = yield nfcall(fs.readFile, 'c.txt');
+
+        // all
+        data = yield Promise.all([
+            nfcall(fs.readFile, 'a.txt'),
+            nfcall(fs.readFile, 'b.txt'),
+            nfcall(fs.readFile, 'c.txt')
+        ]);
+    } catch(err) {
+        console.error("Unable to read one or more input files: " + err.message);
+        throw err;
+    }
 
     yield ptimeout(60*1000);
-    yield nfcall(fs.writeFile, 'd.txt', data[0] + data[1] + data[2]);
+    try {
+        yield nfcall(fs.writeFile, 'd.txt', data[0] + data[1] + data[2]);
+    } catch (err) {
+        console.error("Unable to write ouput file: " + err.message);
+        throw err;
+    }
 }
 
 grun(theFutureIsNow);
