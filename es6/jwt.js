@@ -6,7 +6,7 @@ const header = {
 // encode to base64
 const encodedHeader = new Buffer(JSON.stringify(header))
     .toString('base64')
-    .replace('=', '');
+    .replace(/=/g, '');
 console.log('header: ',encodedHeader);
 
 const payload = {
@@ -20,7 +20,7 @@ const payload = {
 // encode to base64
 const encodedPayload = new Buffer(JSON.stringify(payload))
     .toString('base64')
-    .replace('=', '');
+    .replace(/=/g, '');
 
 console.log('payload: ',encodedPayload);
 
@@ -28,6 +28,6 @@ const crypto = require('crypto');
 const signature = crypto.createHmac('sha256', 'secret')
     .update(encodedHeader + '.' + encodedPayload)
     .digest('base64')
-    .replace('=', '');
+    .replace(/=/g, '');
 
 console.log('signature: ',signature);
