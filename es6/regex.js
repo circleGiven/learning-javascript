@@ -66,3 +66,17 @@ const stuff =
     'low:      2\n';
 console.log(stuff.match(/:\s*[0-9]/g));
 
+const field = '      somethine    ';
+console.log(/\S/.test(field));  // 공백이 아닌 글자가 있는지 확인
+
+
+// 반복 메타문자
+console.log(beer99.match(/[0-9]+/));    // + : 연속해서 있는지
+console.log(beer99.match(/\d{2}/));     // 숫자가 {}개 있는지
+console.log(beer99.match(/\d{2,}/));    // 숫자가 최소 {}개 있는지
+console.log(beer99.match(/\d{2,4}/));   // 숫자가 {}개이상 {}개 이하 있는지
+console.log(beer99.match(/[a-z]\d?/i)); // 글자가 있고 다음에 숫자가 없거나 한개만 있는경우(?)
+console.log(beer99.match(/[a-z]\d*/i)); // 글자가 있고 다음에 숫자가 없거나 있는경우(*)
+console.log(beer99.match(/[a-z]\d+/i)); // 글자가 있고 다음에 숫자가 하나이상 있는경우(*)
+
+
