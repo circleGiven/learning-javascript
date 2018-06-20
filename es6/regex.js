@@ -66,17 +66,25 @@ const stuff =
     'low:      2\n';
 console.log(stuff.match(/:\s*[0-9]/g));
 
-const field = '      somethine    ';
+const field = '      something    ';
 console.log(/\S/.test(field));  // 공백이 아닌 글자가 있는지 확인
 
 
 // 반복 메타문자
-console.log(beer99.match(/[0-9]+/));    // + : 연속해서 있는지
-console.log(beer99.match(/\d{2}/));     // 숫자가 {}개 있는지
-console.log(beer99.match(/\d{2,}/));    // 숫자가 최소 {}개 있는지
-console.log(beer99.match(/\d{2,4}/));   // 숫자가 {}개이상 {}개 이하 있는지
-console.log(beer99.match(/[a-z]\d?/i)); // 글자가 있고 다음에 숫자가 없거나 한개만 있는경우(?)
-console.log(beer99.match(/[a-z]\d*/i)); // 글자가 있고 다음에 숫자가 없거나 있는경우(*)
-console.log(beer99.match(/[a-z]\d+/i)); // 글자가 있고 다음에 숫자가 하나이상 있는경우(*)
+// console.log(beer99.match(/[0-9]+/));    // + : 연속해서 있는지
+// console.log(beer99.match(/\d{2}/));     // 숫자가 {}개 있는지
+// console.log(beer99.match(/\d{2,}/));    // 숫자가 최소 {}개 있는지
+// console.log(beer99.match(/\d{2,4}/));   // 숫자가 {}개이상 {}개 이하 있는지
+// console.log(beer99.match(/[a-z]\d?/i)); // 글자가 있고 다음에 숫자가 없거나 한개만 있는경우(?)
+// console.log(beer99.match(/[a-z]\d*/i)); // 글자가 있고 다음에 숫자가 없거나 있는경우(*)
+// console.log(beer99.match(/[a-z]\d+/i)); // 글자가 있고 다음에 숫자가 하나이상 있는경우(*)
 
 
+const info = 'Address: 333 Mian St., Anywhere, NY, 55532. Phone: 555-5555-5555.';
+console.log(info.match(/\d{5}.*/)); // 일반 마침표는 줄바꿈문자를 제외한 모든 문자를 찾음
+
+const equation = '(2 + 3.5) * 7';
+console.log(equation.match(/\(\d \+ \d\.\d\) \* \d/));  // 이스케이프를 이용하요 마침표를 찾음
+
+// 마침표 : 줄바꿈을 제외한 모든 문자
+// \s\S : 줄바꿈을 포함한 모든 문자
