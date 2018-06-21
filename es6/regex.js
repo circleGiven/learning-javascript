@@ -90,7 +90,7 @@ console.log(equation.match(/\(\d \+ \d\.\d\) \* \d/));  // 이스케이프를 �
 // \s\S : 줄바꿈을 포함한 모든 문자
 
 
-// 캡처
+// 그룹
 const groupText = 'Visit oreilly.com today!';
 console.log(groupText.match(/[a-z]+(?:\.com|\.org|\.edu)/i));   // 켭처하지 않는 그룹
 
@@ -99,6 +99,10 @@ const html2 = '<link rel="stylesheet" href="http://insecure.com/stuff.css">\n' +
     '<link rel="stylesheet" href="//anything.com/flexible.css">' ;
 console.log(html2.match(/(?:https?)?\/\/[a-z][a-z0-9-]+[a-z0-9]+/ig));  //(?:https?)? 는 빈문자열 http https 세가지 패턴에 유효함
 
+// 소극적 참조
 const html3 = '<i>greedy</i> and <i>lazy</i> matching.';
 console.log(html3.replace(/<i>(.*?)<\/i>/ig, '<strong>$1</strong>'));
 
+
+const promo = 'Opening for XAAX is the dynamic GOOG! At the box office now RQQQ!';
+console.log(promo.match(/([A-Z])([A-Z])\2\1/g));
