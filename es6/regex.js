@@ -98,3 +98,7 @@ const html2 = '<link rel="stylesheet" href="http://insecure.com/stuff.css">\n' +
     '<link rel="stylesheet" href="https://insecure.com/securestuff.css">\n'  +
     '<link rel="stylesheet" href="//anything.com/flexible.css">' ;
 console.log(html2.match(/(?:https?)?\/\/[a-z][a-z0-9-]+[a-z0-9]+/ig));  //(?:https?)? 는 빈문자열 http https 세가지 패턴에 유효함
+
+const html3 = '<i>greedy</i> and <i>lazy</i> matching.';
+console.log(html3.replace(/<i>(.*?)<\/i>/ig, '<strong>$1</strong>'));
+
