@@ -8,6 +8,12 @@
  * Date        : 2019. 3. 2.
  */
 
+/**
+ * Binary search
+ * @param min
+ * @param max
+ * @param findNumber
+ */
 function binary_search(min, max, findNumber) {
     let minNum = min;
     let maxNum = max;
@@ -25,8 +31,31 @@ function binary_search(min, max, findNumber) {
     }
 }
 
-function run(number) {
-
+/**
+ * Recursion binary search
+ * @param min
+ * @param max
+ * @param findNumber
+ */
+function binary_search_recursion(min, max, findNumber) {
+    const temp = Math.floor((min + max)/ 2);
+    console.log(temp);
+    if (temp === findNumber) {
+        return;
+    } else if (temp < findNumber) {
+        binary_search_recursion(temp, max, findNumber);
+    } else if (temp > findNumber) {
+        binary_search_recursion(min, temp, findNumber);
+    }
 }
 
-binary_search(1, 128, 11);
+/**
+ * RUN
+ * @param number
+ */
+function run(number, isUsedRecursion) {
+    isUsedRecursion ? binary_search_recursion(1,128, number) : binary_search(1, 128, number);
+}
+
+// test code
+run(11, true);
