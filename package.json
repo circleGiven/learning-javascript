@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/circleGiven/learning-javascript#readme",
   "dependencies": {
+    "moment-timezone": "^0.5.17",
     "underscore": "^1.9.0"
   },
   "devDependencies": {

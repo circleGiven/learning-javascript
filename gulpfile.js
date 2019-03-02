@@ -16,7 +16,7 @@ const eslint = require('gulp-eslint');
 // 걸프 작업
 gulp.task('default', function() {
     // ESLint 실행
-    gulp.src(["es6/**/*.js", "public/es6/**/*.js"])
+    gulp.src(["es6/**/*.js", "public/es6/**/*.js", "practice/**/*.js"])
         .pipe(eslint())
         .pipe(eslint.format());
     // 노드 소스
