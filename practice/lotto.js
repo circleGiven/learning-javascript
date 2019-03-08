@@ -23,6 +23,24 @@ function getLotto() {
     return result;
 }
 
+function getPrizeLotto() {
+    const RESULT_NUM_LIST = getLotto();
+    let count = 0;
+    while(1) {
+        const temp = getLotto();
+        if (isPrizeLotto(temp, RESULT_NUM_LIST)) {
+            console.log(count);
+            return temp;
+        }
+        count += 1;
+    }
+}
+
+/**
+ * 단지 LOTTO 번호만 뽑는다면
+ * @param count
+ * @returns {Array}
+ */
 function run(count) {
     const result = [];
     for (let num = 0; num < count; num++) {
@@ -31,4 +49,28 @@ function run(count) {
     return result;
 }
 
-console.log(run(4));
+/**
+ * 난수가 맞은 LOTTO 번호만 뽑을 때
+ * @param count
+ * @returns {Array}
+ */
+function ruePrize(count) {
+    const result = [];
+    for (let num = 0; num < count; num++) {
+        result.push(getPrizeLotto());
+    }
+    return result;
+}
+
+/**
+ * 난수가 맞은 LOTTO 인지 확인
+ * @param number_list
+ * @param RESULT_NUM_LIST
+ * @returns {boolean}
+ */
+function isPrizeLotto(number_list, RESULT_NUM_LIST) {
+    return number_list.every(num => RESULT_NUM_LIST.find(rNum => num === rNum));
+}
+
+// test
+console.log(ruePrize(5), 'GOOD LUCK');
