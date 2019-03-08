@@ -24,11 +24,10 @@ function getLotto() {
 }
 
 function getPrizeLotto() {
-    const RESULT_NUM_LIST = getLotto();
     let count = 0;
     while(1) {
         const temp = getLotto();
-        if (isPrizeLotto(temp, RESULT_NUM_LIST)) {
+        if (isPrizeLotto(temp, getLotto())) {
             console.log(count);
             return temp;
         }
@@ -50,7 +49,7 @@ function run(count) {
 }
 
 /**
- * 난수가 맞은 LOTTO 번호만 뽑을 때
+ * 결과도 항상 랜덤으로 생성할 때
  * @param count
  * @returns {Array}
  */
